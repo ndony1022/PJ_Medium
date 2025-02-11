@@ -6,7 +6,9 @@ const ArticleList = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/feed");
+        // 환경 변수 사용: process.env.REACT_APP_API_URL
+        const apiUrl = process.env.REACT_APP_API_URL; // 예: http://my-backend-env.eba-xxxxx.us-west-2.elasticbeanstalk.com
+        const response = await fetch(`${apiUrl}/api/feed`);
         const feed = await response.json();
         setArticles(feed.items);
       } catch (error) {
